@@ -1,0 +1,20 @@
+{
+  "mainnet": {
+    "Platform": {
+      "address": "0x0000000895cB182E6f983eb4D8b4E0Aa0B31Ae4c",
+      "startBlock": 17123807
+    },
+    "QuestBoard": {
+      "address": "0xA6Ed52EB3e39891CE5029817CdB5eAc97A2834B3"
+    },
+    "yBribe": {
+      "address": "0x03dFdBcD4056E2F92251c7B07423E1a33a7D3F6d"
+    },
+    "MultiMerkleStash": {
+      "address": "0x34590960981f98b55d236b70E8B4d9929ad89C9c"
+    },
+    "MultiMerkleStashCVX": {
+      "address": "0x378Ba9B73309bE80BF4C2c027aAD799766a7ED5A"
+    }
+  }
+}

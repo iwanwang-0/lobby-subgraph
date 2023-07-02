@@ -1,0 +1,231 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Platform
+    network: mainnet
+    source:
+      address: "0x0000000895cB182E6f983eb4D8b4E0Aa0B31Ae4c"
+      abi: Platform
+      startBlock: 17123807
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BountyClosed
+        - BountyCreated
+        - BountyDurationIncrease
+        - BountyDurationIncreaseQueued
+        - Claimed
+        - FeeCollectorUpdated
+        - FeeUpdated
+        - FeesCollected
+        - ManagerUpdated
+        - OwnershipTransferred
+        - PeriodRolledOver
+        - RecipientSet
+      abis:
+        - name: Platform
+          file: ./abis/Platform.json
+      eventHandlers:
+        - event: BountyClosed(uint256,uint256)
+          handler: handleBountyClosed
+        - event: BountyCreated(indexed uint256,indexed
+            address,address,address,uint8,uint256,uint256,uint256,bool)
+          handler: handleBountyCreated
+        - event: BountyDurationIncrease(uint256,uint8,uint256,uint256)
+          handler: handleBountyDurationIncrease
+        - event: BountyDurationIncreaseQueued(uint256,uint8,uint256,uint256)
+          handler: handleBountyDurationIncreaseQueued
+        - event: Claimed(indexed address,address,indexed uint256,uint256,uint256,uint256)
+          handler: handleClaimed
+        - event: FeeCollectorUpdated(address)
+          handler: handleFeeCollectorUpdated
+        - event: FeeUpdated(uint256)
+          handler: handleFeeUpdated
+        - event: FeesCollected(indexed address,uint256)
+          handler: handleFeesCollected
+        - event: ManagerUpdated(uint256,indexed address)
+          handler: handleManagerUpdated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PeriodRolledOver(uint256,uint256,uint256,uint256)
+          handler: handlePeriodRolledOver
+        - event: RecipientSet(indexed address,indexed address)
+          handler: handleRecipientSet
+      file: ./src/platform.ts
+  - kind: ethereum
+    name: QuestBoard
+    network: mainnet
+    source:
+      address: "0xA6Ed52EB3e39891CE5029817CdB5eAc97A2834B3"
+      abi: QuestBoard
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ApprovedManager
+        - ChestUpdated
+        - DistributorUpdated
+        - EmergencyWithdraw
+        - IncreasedQuestDuration
+        - IncreasedQuestObjective
+        - IncreasedQuestReward
+        - InitDistributor
+        - Killed
+        - MinObjectiveUpdated
+        - NewPendingOwner
+        - NewQuest
+        - QuestBoardOwnershipTransferred
+        - PeriodClosed
+        - PlatformFeeUpdated
+        - RemovedManager
+        - Unkilled
+        - UpdateRewardToken
+        - WhitelistToken
+        - WithdrawUnusedRewards
+      abis:
+        - name: QuestBoard
+          file: ./abis/QuestBoard.json
+      eventHandlers:
+        - event: ApprovedManager(indexed address)
+          handler: handleApprovedManager
+        - event: ChestUpdated(address,address)
+          handler: handleChestUpdated
+        - event: DistributorUpdated(address,address)
+          handler: handleDistributorUpdated
+        - event: EmergencyWithdraw(indexed uint256,address,uint256)
+          handler: handleEmergencyWithdraw
+        - event: IncreasedQuestDuration(indexed uint256,uint256,uint256)
+          handler: handleIncreasedQuestDuration
+        - event: IncreasedQuestObjective(indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleIncreasedQuestObjective
+        - event: IncreasedQuestReward(indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleIncreasedQuestReward
+        - event: InitDistributor(address)
+          handler: handleInitDistributor
+        - event: Killed(uint256)
+          handler: handleKilled
+        - event: MinObjectiveUpdated(uint256,uint256)
+          handler: handleMinObjectiveUpdated
+        - event: NewPendingOwner(indexed address,indexed address)
+          handler: handleNewPendingOwner
+        - event: NewQuest(indexed uint256,indexed address,indexed
+            address,address,uint48,uint256,uint256,uint256)
+          handler: handleNewQuest
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PeriodClosed(indexed uint256,indexed uint256)
+          handler: handlePeriodClosed
+        - event: PlatformFeeUpdated(uint256,uint256)
+          handler: handlePlatformFeeUpdated
+        - event: RemovedManager(indexed address)
+          handler: handleRemovedManager
+        - event: Unkilled(uint256)
+          handler: handleUnkilled
+        - event: UpdateRewardToken(indexed address,uint256)
+          handler: handleUpdateRewardToken
+        - event: WhitelistToken(indexed address,uint256)
+          handler: handleWhitelistToken
+        - event: WithdrawUnusedRewards(indexed uint256,address,uint256)
+          handler: handleWithdrawUnusedRewards
+      file: ./src/quest-board.ts
+  - kind: ethereum
+    name: yBribe
+    network: mainnet
+    source:
+      address: "0x03dFdBcD4056E2F92251c7B07423E1a33a7D3F6d"
+      abi: yBribe
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Blacklisted
+        - ChangeOwner
+        - ClearRewardRecipient
+        - yBribeFeeUpdated
+        - NewTokenReward
+        - PeriodUpdated
+        - RemovedFromBlacklist
+        - RewardAdded
+        - RewardClaimed
+        - SetRewardRecipient
+      abis:
+        - name: yBribe
+          file: ./abis/yBribe.json
+      eventHandlers:
+        - event: Blacklisted(indexed address)
+          handler: handleBlacklisted
+        - event: ChangeOwner(address)
+          handler: handleChangeOwner
+        - event: ClearRewardRecipient(indexed address,address)
+          handler: handleClearRewardRecipient
+        - event: FeeUpdated(uint256)
+          handler: handleFeeUpdated
+        - event: NewTokenReward(indexed address,indexed address)
+          handler: handleNewTokenReward
+        - event: PeriodUpdated(indexed address,indexed uint256,uint256,uint256)
+          handler: handlePeriodUpdated
+        - event: RemovedFromBlacklist(indexed address)
+          handler: handleRemovedFromBlacklist
+        - event: RewardAdded(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleRewardAdded
+        - event: RewardClaimed(indexed address,indexed address,indexed address,uint256)
+          handler: handleRewardClaimed
+        - event: SetRewardRecipient(indexed address,address)
+          handler: handleSetRewardRecipient
+      file: ./src/y-bribe.ts
+  - kind: ethereum
+    name: MultiMerkleStash
+    network: mainnet
+    source:
+      address: "0x34590960981f98b55d236b70E8B4d9929ad89C9c"
+      abi: MultiMerkleStash
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MultiMerkleStashClaimed
+        - MerkleRootUpdated
+        - MultiMerkleStashOwnershipTransferred
+      abis:
+        - name: MultiMerkleStash
+          file: ./abis/MultiMerkleStash.json
+      eventHandlers:
+        - event: Claimed(indexed address,uint256,uint256,indexed address,indexed uint256)
+          handler: handleClaimed
+        - event: MerkleRootUpdated(indexed address,indexed bytes32,indexed uint256)
+          handler: handleMerkleRootUpdated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/multi-merkle-stash.ts
+  - kind: ethereum
+    name: MultiMerkleStashCVX
+    network: mainnet
+    source:
+      address: "0x378Ba9B73309bE80BF4C2c027aAD799766a7ED5A"
+      abi: MultiMerkleStashCVX
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MultiMerkleStashCVXClaimed
+        - MultiMerkleStashCVXMerkleRootUpdated
+        - MultiMerkleStashCVXOwnershipTransferred
+      abis:
+        - name: MultiMerkleStashCVX
+          file: ./abis/MultiMerkleStashCVX.json
+      eventHandlers:
+        - event: Claimed(indexed address,uint256,uint256,indexed address,indexed uint256)
+          handler: handleClaimed
+        - event: MerkleRootUpdated(indexed address,indexed bytes32,indexed uint256)
+          handler: handleMerkleRootUpdated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/multi-merkle-stash-cvx.ts

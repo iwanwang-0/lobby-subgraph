@@ -1,0 +1,461 @@
+type BountyClosed @entity(immutable: true) {
+  id: Bytes!
+  Platform_id: BigInt! # uint256
+  remainingReward: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BountyCreated @entity(immutable: true) {
+  id: Bytes!
+  Platform_id: BigInt! # uint256
+  gauge: Bytes! # address
+  manager: Bytes! # address
+  rewardToken: Bytes! # address
+  numberOfPeriods: Int! # uint8
+  maxRewardPerVote: BigInt! # uint256
+  rewardPerPeriod: BigInt! # uint256
+  totalRewardAmount: BigInt! # uint256
+  isUpgradeable: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BountyDurationIncrease @entity(immutable: true) {
+  id: Bytes!
+  Platform_id: BigInt! # uint256
+  numberOfPeriods: Int! # uint8
+  totalRewardAmount: BigInt! # uint256
+  maxRewardPerVote: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BountyDurationIncreaseQueued @entity(immutable: true) {
+  id: Bytes!
+  Platform_id: BigInt! # uint256
+  numberOfPeriods: Int! # uint8
+  totalRewardAmount: BigInt! # uint256
+  maxRewardPerVote: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Claimed @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  rewardToken: Bytes! # address
+  bountyId: BigInt! # uint256
+  amount: BigInt! # uint256
+  protocolFees: BigInt! # uint256
+  period: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FeeCollectorUpdated @entity(immutable: true) {
+  id: Bytes!
+  feeCollector: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FeeUpdated @entity(immutable: true) {
+  id: Bytes!
+  fee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FeesCollected @entity(immutable: true) {
+  id: Bytes!
+  rewardToken: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ManagerUpdated @entity(immutable: true) {
+  id: Bytes!
+  Platform_id: BigInt! # uint256
+  manager: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PeriodRolledOver @entity(immutable: true) {
+  id: Bytes!
+  Platform_id: BigInt! # uint256
+  periodId: BigInt! # uint256
+  timestamp: BigInt! # uint256
+  rewardPerPeriod: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RecipientSet @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes! # address
+  recipient: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+type ApprovedManager @entity(immutable: true) {
+  id: Bytes!
+  manager: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChestUpdated @entity(immutable: true) {
+  id: Bytes!
+  oldChest: Bytes! # address
+  newChest: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type DistributorUpdated @entity(immutable: true) {
+  id: Bytes!
+  oldDistributor: Bytes! # address
+  newDistributor: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EmergencyWithdraw @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  recipient: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type IncreasedQuestDuration @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  addedDuration: BigInt! # uint256
+  addedRewardAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type IncreasedQuestObjective @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  updatePeriod: BigInt! # uint256
+  newObjective: BigInt! # uint256
+  addedRewardAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type IncreasedQuestReward @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  updatePeriod: BigInt! # uint256
+  newRewardPerVote: BigInt! # uint256
+  addedRewardAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type InitDistributor @entity(immutable: true) {
+  id: Bytes!
+  distributor: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Killed @entity(immutable: true) {
+  id: Bytes!
+  killTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MinObjectiveUpdated @entity(immutable: true) {
+  id: Bytes!
+  oldMinObjective: BigInt! # uint256
+  newMinObjective: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewPendingOwner @entity(immutable: true) {
+  id: Bytes!
+  previousPendingOwner: Bytes! # address
+  newPendingOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewQuest @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  creator: Bytes! # address
+  gauge: Bytes! # address
+  rewardToken: Bytes! # address
+  duration: BigInt! # uint48
+  startPeriod: BigInt! # uint256
+  objectiveVotes: BigInt! # uint256
+  rewardPerVote: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type QuestBoardOwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PeriodClosed @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  period: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PlatformFeeUpdated @entity(immutable: true) {
+  id: Bytes!
+  oldfee: BigInt! # uint256
+  newFee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RemovedManager @entity(immutable: true) {
+  id: Bytes!
+  manager: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Unkilled @entity(immutable: true) {
+  id: Bytes!
+  unkillTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type UpdateRewardToken @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  newMinRewardPerVote: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WhitelistToken @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  minRewardPerVote: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawUnusedRewards @entity(immutable: true) {
+  id: Bytes!
+  questID: BigInt! # uint256
+  recipient: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+type Blacklisted @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChangeOwner @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClearRewardRecipient @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  recipient: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type yBribeFeeUpdated @entity(immutable: true) {
+  id: Bytes!
+  fee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewTokenReward @entity(immutable: true) {
+  id: Bytes!
+  gauge: Bytes! # address
+  reward_token: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PeriodUpdated @entity(immutable: true) {
+  id: Bytes!
+  gauge: Bytes! # address
+  period: BigInt! # uint256
+  bias: BigInt! # uint256
+  blacklisted_bias: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RemovedFromBlacklist @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardAdded @entity(immutable: true) {
+  id: Bytes!
+  briber: Bytes! # address
+  gauge: Bytes! # address
+  reward_token: Bytes! # address
+  amount: BigInt! # uint256
+  fee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardClaimed @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  gauge: Bytes! # address
+  reward_token: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SetRewardRecipient @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  recipient: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+type MultiMerkleStashClaimed @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  index: BigInt! # uint256
+  amount: BigInt! # uint256
+  account: Bytes! # address
+  update: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MerkleRootUpdated @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  merkleRoot: Bytes! # bytes32
+  update: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MultiMerkleStashOwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+type MultiMerkleStashCVXClaimed @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  index: BigInt! # uint256
+  amount: BigInt! # uint256
+  account: Bytes! # address
+  update: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MultiMerkleStashCVXMerkleRootUpdated @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  merkleRoot: Bytes! # bytes32
+  update: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MultiMerkleStashCVXOwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
