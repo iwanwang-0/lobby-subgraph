@@ -30,32 +30,32 @@ export function handleClaimed(event: ClaimedEvent): void {
 }
 
 export function handleMerkleRootUpdated(event: MerkleRootUpdatedEvent): void {
-  let entity = new MerkleRootUpdated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.token = event.params.token
-  entity.merkleRoot = event.params.merkleRoot
-  entity.update = event.params.update
+  // let entity = new MerkleRootUpdated(
+  //   event.transaction.hash.concatI32(event.logIndex.toI32())
+  // )
+  // entity.token = event.params.token
+  // entity.merkleRoot = event.params.merkleRoot
+  // entity.update = event.params.update
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  // entity.blockNumber = event.block.number
+  // entity.blockTimestamp = event.block.timestamp
+  // entity.transactionHash = event.transaction.hash
 
-  entity.save()
+  // entity.save()
 }
 
 export function handleOwnershipTransferred(
   event: OwnershipTransferredEvent
 ): void {
-  let entity = new OwnershipTransferred(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  // entity.previousOwner = event.params.previousOwner
-  entity.newOwner = event.params.newOwner
+  // let entity = new OwnershipTransferred(
+  //   event.transaction.hash.concatI32(event.logIndex.toI32())
+  // )
+  // // entity.previousOwner = event.params.previousOwner
+  // entity.newOwner = event.params.newOwner
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  // entity.blockNumber = event.block.number
+  // entity.blockTimestamp = event.block.timestamp
+  // entity.transactionHash = event.transaction.hash
 
-  entity.save()
+  // entity.save()
 }
