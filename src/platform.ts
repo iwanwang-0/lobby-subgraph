@@ -1,3 +1,4 @@
+import { Bytes } from "@graphprotocol/graph-ts"
 import {
   BountyClosed as BountyClosedEvent,
   BountyCreated as BountyCreatedEvent,
@@ -24,7 +25,8 @@ import {
   ManagerUpdated,
   OwnershipTransferred,
   PeriodRolledOver,
-  RecipientSet
+  RecipientSet,
+  ClaimedRecord
 } from "../generated/schema"
 
 export function handleBountyClosed(event: BountyClosedEvent): void {
@@ -99,19 +101,15 @@ export function handleBountyDurationIncreaseQueued(
 }
 
 export function handleClaimed(event: ClaimedEvent): void {
-  // let entity = 
-
-  let entity = new Claimed(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
+  const entityId = Bytes.fromUTF8("Lobby_Claim_Reward_Records");
+  let entity = ClaimedRecord.load(entityId);
+  if (entity == null || entity == undefined) {
+    entity = new ClaimedRecord(entityId)
+  }
   entity.user = event.params.user
   entity.rewardToken = event.params.rewardToken
-  entity.bountyId = event.params.bountyId
   entity.amount = event.params.amount
-  entity.protocolFees = event.params.protocolFees
   entity.period = event.params.period
-
-  entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
 

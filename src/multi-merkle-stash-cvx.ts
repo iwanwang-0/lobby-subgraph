@@ -1,3 +1,4 @@
+import { BigInt, Bytes } from "@graphprotocol/graph-ts"
 import {
   Claimed as ClaimedEvent,
   MerkleRootUpdated as MerkleRootUpdatedEvent,
@@ -6,20 +7,20 @@ import {
 import {
   Claimed,
   MerkleRootUpdated,
-  OwnershipTransferred
+  OwnershipTransferred,
+  ClaimedRecord
 } from "../generated/schema"
 
 export function handleClaimed(event: ClaimedEvent): void {
-  let entity = new Claimed(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.token = event.params.token
-  entity.index = event.params.index
+  const entityId = Bytes.fromUTF8("Lobby_Claim_Reward_Records");
+  let entity = ClaimedRecord.load(entityId);
+  if (entity == null || entity == undefined) {
+    entity = new ClaimedRecord(entityId)
+  }
+  entity.user = event.params.account
+  entity.rewardToken = event.params.token
   entity.amount = event.params.amount
-  entity.account = event.params.account
-  entity.update = event.params.update
-
-  entity.blockNumber = event.block.number
+  entity.period = new BigInt(0)
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
 

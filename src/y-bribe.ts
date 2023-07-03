@@ -1,3 +1,4 @@
+import { BigInt, Bytes } from "@graphprotocol/graph-ts"
 import {
   Blacklisted as BlacklistedEvent,
   ChangeOwner as ChangeOwnerEvent,
@@ -20,7 +21,8 @@ import {
   RemovedFromBlacklist,
   RewardAdded,
   RewardClaimed,
-  SetRewardRecipient
+  SetRewardRecipient,
+  ClaimedRecord
 } from "../generated/schema"
 
 export function handleBlacklisted(event: BlacklistedEvent): void {
@@ -141,15 +143,15 @@ export function handleRewardAdded(event: RewardAddedEvent): void {
 }
 
 export function handleRewardClaimed(event: RewardClaimedEvent): void {
-  let entity = new RewardClaimed(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
+  const entityId = Bytes.fromUTF8("Lobby_Claim_Reward_Records");
+  let entity = ClaimedRecord.load(entityId);
+  if (entity == null || entity == undefined) {
+    entity = new ClaimedRecord(entityId)
+  }
   entity.user = event.params.user
-  entity.gauge = event.params.gauge
-  entity.reward_token = event.params.reward_token
+  entity.rewardToken = event.params.reward_token
   entity.amount = event.params.amount
-
-  entity.blockNumber = event.block.number
+  entity.period = new BigInt(0)
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
 

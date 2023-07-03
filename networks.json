@@ -15,6 +15,9 @@
     },
     "MultiMerkleStashCVX": {
       "address": "0x378Ba9B73309bE80BF4C2c027aAD799766a7ED5A"
+    },
+    "Contract": {
+      "address": "0x3682518b529e4404fb05250F9ad590C3218E5F9f"
     }
   }
 }

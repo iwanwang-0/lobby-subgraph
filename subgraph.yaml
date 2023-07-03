@@ -229,3 +229,34 @@ dataSources:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
       file: ./src/multi-merkle-stash-cvx.ts
+  - kind: ethereum
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x3682518b529e4404fb05250F9ad590C3218E5F9f"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ContractClaimed
+        - ContractNewPendingOwner
+        - ContractNewQuest
+        - ContractOwnershipTransferred
+        - QuestPeriodUpdated
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: Claimed(indexed uint256,indexed uint256,uint256,uint256,address,indexed address)
+          handler: handleClaimed
+        - event: NewPendingOwner(indexed address,indexed address)
+          handler: handleNewPendingOwner
+        - event: NewQuest(indexed uint256,address)
+          handler: handleNewQuest
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: QuestPeriodUpdated(indexed uint256,indexed uint256,bytes32)
+          handler: handleQuestPeriodUpdated
+      file: ./src/contract.ts
