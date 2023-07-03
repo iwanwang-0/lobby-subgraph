@@ -18,13 +18,15 @@ import {
 export function handleClaimed(event: ClaimedEvent): void {
   const entityId = Bytes.fromUTF8("Lobby_Claim_Reward_Records");
   let entity = ClaimedRecord.load(entityId);
-  if (entity == null || entity == undefined) {
+  if (entity == null) {
     entity = new ClaimedRecord(entityId)
   }
   entity.user = event.params.account
   entity.rewardToken = event.params.rewardToken
   entity.amount = event.params.amount
   entity.period = event.params.period
+  entity.platform = Bytes.fromUTF8("Quest");
+  entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
 
@@ -65,7 +67,7 @@ export function handleOwnershipTransferred(
   let entity = new OwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.previousOwner = event.params.previousOwner
+  // entity.previousOwner = event.params.previousOwner
   entity.newOwner = event.params.newOwner
 
   entity.blockNumber = event.block.number

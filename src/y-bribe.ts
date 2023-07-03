@@ -145,13 +145,15 @@ export function handleRewardAdded(event: RewardAddedEvent): void {
 export function handleRewardClaimed(event: RewardClaimedEvent): void {
   const entityId = Bytes.fromUTF8("Lobby_Claim_Reward_Records");
   let entity = ClaimedRecord.load(entityId);
-  if (entity == null || entity == undefined) {
+  if (entity == null) {
     entity = new ClaimedRecord(entityId)
   }
   entity.user = event.params.user
   entity.rewardToken = event.params.reward_token
   entity.amount = event.params.amount
   entity.period = new BigInt(0)
+  entity.platform = Bytes.fromUTF8("yBribe");
+  entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
 

@@ -6362,7 +6362,6 @@ export class QuestPeriodUpdated extends Entity {
 }
 
 export class ClaimedRecord extends Entity {
-  // const claimedRecordEntityId: Bytes = Bytes.fromUTF8("Lobby_Claim_Reward_Records");
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -6387,7 +6386,9 @@ export class ClaimedRecord extends Entity {
   }
 
   static load(id: Bytes): ClaimedRecord | null {
-    return changetype<ClaimedRecord | null>(store.get("ClaimedRecord", id.toHexString()));
+    return changetype<ClaimedRecord | null>(
+      store.get("ClaimedRecord", id.toHexString())
+    );
   }
 
   get id(): Bytes {
@@ -6453,6 +6454,32 @@ export class ClaimedRecord extends Entity {
 
   set period(value: BigInt) {
     this.set("period", Value.fromBigInt(value));
+  }
+
+  get platform(): Bytes {
+    let value = this.get("platform");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set platform(value: Bytes) {
+    this.set("platform", Value.fromBytes(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 
   get blockTimestamp(): BigInt {

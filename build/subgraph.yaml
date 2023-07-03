@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Platform
@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x0000000895cB182E6f983eb4D8b4E0Aa0B31Ae4c"
       abi: Platform
-      startBlock: 17423807 #17123807
+      startBlock: 17423807
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -28,7 +28,7 @@ dataSources:
         - RecipientSet
       abis:
         - name: Platform
-          file: ./abis/Platform.json
+          file: Platform/abis/Platform.json
       eventHandlers:
         - event: BountyClosed(uint256,uint256)
           handler: handleBountyClosed
@@ -55,7 +55,7 @@ dataSources:
           handler: handlePeriodRolledOver
         - event: RecipientSet(indexed address,indexed address)
           handler: handleRecipientSet
-      file: ./src/platform.ts
+      file: Platform/Platform.wasm
   - kind: ethereum
     name: QuestBoard
     network: mainnet
@@ -89,7 +89,7 @@ dataSources:
         - WithdrawUnusedRewards
       abis:
         - name: QuestBoard
-          file: ./abis/QuestBoard.json
+          file: QuestBoard/abis/QuestBoard.json
       eventHandlers:
         - event: ApprovedManager(indexed address)
           handler: handleApprovedManager
@@ -132,7 +132,7 @@ dataSources:
           handler: handleWhitelistToken
         - event: WithdrawUnusedRewards(indexed uint256,address,uint256)
           handler: handleWithdrawUnusedRewards
-      file: ./src/quest-board.ts
+      file: QuestBoard/QuestBoard.wasm
   - kind: ethereum
     name: yBribe
     network: mainnet
@@ -156,7 +156,7 @@ dataSources:
         - SetRewardRecipient
       abis:
         - name: yBribe
-          file: ./abis/yBribe.json
+          file: yBribe/abis/yBribe.json
       eventHandlers:
         - event: Blacklisted(indexed address)
           handler: handleBlacklisted
@@ -178,7 +178,7 @@ dataSources:
           handler: handleRewardClaimed
         - event: SetRewardRecipient(indexed address,address)
           handler: handleSetRewardRecipient
-      file: ./src/y-bribe.ts
+      file: yBribe/yBribe.wasm
   - kind: ethereum
     name: MultiMerkleStash
     network: mainnet
@@ -195,7 +195,7 @@ dataSources:
         - MultiMerkleStashOwnershipTransferred
       abis:
         - name: MultiMerkleStash
-          file: ./abis/MultiMerkleStash.json
+          file: MultiMerkleStash/abis/MultiMerkleStash.json
       eventHandlers:
         - event: Claimed(indexed address,uint256,uint256,indexed address,indexed uint256)
           handler: handleClaimed
@@ -203,7 +203,7 @@ dataSources:
           handler: handleMerkleRootUpdated
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
-      file: ./src/multi-merkle-stash.ts
+      file: MultiMerkleStash/MultiMerkleStash.wasm
   - kind: ethereum
     name: MultiMerkleStashCVX
     network: mainnet
@@ -220,7 +220,7 @@ dataSources:
         - MultiMerkleStashCVXOwnershipTransferred
       abis:
         - name: MultiMerkleStashCVX
-          file: ./abis/MultiMerkleStashCVX.json
+          file: MultiMerkleStashCVX/abis/MultiMerkleStashCVX.json
       eventHandlers:
         - event: Claimed(indexed address,uint256,uint256,indexed address,indexed uint256)
           handler: handleClaimed
@@ -228,7 +228,7 @@ dataSources:
           handler: handleMerkleRootUpdated
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
-      file: ./src/multi-merkle-stash-cvx.ts
+      file: MultiMerkleStashCVX/MultiMerkleStashCVX.wasm
   - kind: ethereum
     name: Contract
     network: mainnet
@@ -247,7 +247,7 @@ dataSources:
         - QuestPeriodUpdated
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract/abis/Contract.json
       eventHandlers:
         - event: Claimed(indexed uint256,indexed uint256,uint256,uint256,address,indexed address)
           handler: handleClaimed
@@ -259,4 +259,4 @@ dataSources:
           handler: handleOwnershipTransferred
         - event: QuestPeriodUpdated(indexed uint256,indexed uint256,bytes32)
           handler: handleQuestPeriodUpdated
-      file: ./src/contract.ts
+      file: Contract/Contract.wasm

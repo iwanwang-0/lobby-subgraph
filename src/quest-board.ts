@@ -234,7 +234,7 @@ export function handleOwnershipTransferred(
   let entity = new OwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.previousOwner = event.params.previousOwner
+  // entity.previousOwner = event.params.previousOwner
   entity.newOwner = event.params.newOwner
 
   entity.blockNumber = event.block.number
