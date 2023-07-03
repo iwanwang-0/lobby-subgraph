@@ -508,3 +508,15 @@ type QuestPeriodUpdated @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type ClaimedRecord @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  rewardToken: Bytes! # address
+  amount: BigInt! # uint256
+  period: BigInt! # uint256
+  platform: Bytes! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
